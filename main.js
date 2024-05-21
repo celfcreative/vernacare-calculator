@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const unitsFourFiveInput = document.getElementById('unitsFourFive');
   const unitsSevenInput = document.getElementById('unitsSeven');
-  const resultSpan = document.querySelector('.result');
+  const result4lSpans = document.querySelectorAll('.result-4l');
+  const result7lSpans = document.querySelectorAll('.result-7l');
+  const totalResultSpan = document.querySelector('.result');
 
   function calculateTotalCO2() {
     const unitsFourFiveValue = unitsFourFiveInput.value
@@ -13,8 +15,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const unitsSevenValue = unitsSevenInput.value
       ? parseFloat(unitsSevenInput.value) * sevenBase
       : 0;
+
+    result4lSpans.forEach((span) => {
+      span.textContent = unitsFourFiveValue.toFixed(2);
+    });
+
+    result7lSpans.forEach((span) => {
+      span.textContent = unitsSevenValue.toFixed(2);
+    });
+
     const totalCO2 = unitsFourFiveValue + unitsSevenValue;
-    resultSpan.textContent = totalCO2.toFixed(2);
+    totalResultSpan.textContent = totalCO2.toFixed(2);
   }
 
   unitsFourFiveInput.addEventListener('input', calculateTotalCO2);
